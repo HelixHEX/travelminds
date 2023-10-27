@@ -3,6 +3,8 @@ import axios from "axios";
 import { getBaseURL } from "./utils";
 import { useToast } from "@chakra-ui/react";
 
+type RefType = React.MutableRefObject<null | HTMLDivElement>
+
 const generateTravelDetails = async ({
   destination,
   budget,
