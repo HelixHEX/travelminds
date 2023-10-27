@@ -33,7 +33,7 @@ const override: CSSProperties = {
 export default function Home() {
   const [destination, setDestination] = useState<string>("");
   const [budget, setBudget] = useState<any>();
-  const ref = useRef<null | HTMLElement>(null)
+  const ref = useRef<null | HTMLDivElement>(null)
 
   const { mutate, data, isPending } = useGenerateTravelDetails({ref});
   return (
