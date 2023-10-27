@@ -49,12 +49,17 @@ export default function Home() {
               {"What's the next adventure?"}
             </Heading>
           </VStack>
-          <Text w={{base: '80%', md: 'auto'}} textAlign={'center'}>
+          <Text w={{ base: "80%", md: "auto" }} textAlign={"center"}>
             {
               "Start by asking our AI travel agent where you'd like to go and your budget, and we'll cover the rest"
             }
           </Text>
-          <Flex flexDir={"column"} bg="white" rounded={10} w={{base: '80%', md: '100%'}}>
+          <Flex
+            flexDir={"column"}
+            bg="white"
+            rounded={10}
+            w={{ base: "80%", md: "100%" }}
+          >
             <InputGroup>
               <Input
                 h={12}
@@ -105,6 +110,9 @@ export default function Home() {
               </>
             ) : null}
           </Flex>
+          {!isPending && data && (
+            <Heading size="sm">Scroll down to see trip details!</Heading>
+          )}
         </VStack>
         <Box
           zIndex={-1}
