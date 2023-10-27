@@ -1,4 +1,4 @@
-interface AIResponse {
+interface GeneratedDetailsResponse {
   rawResponse: string;
   formattedResponse: FormatedResponse
 }
@@ -8,6 +8,7 @@ interface FormatedResponse {
   estimatedTotalCost: number;
   destination: string;
   destinationImgURL: string;
+  itinerary: string[]
 }
 
 interface GenerateTravelDetailsProps {

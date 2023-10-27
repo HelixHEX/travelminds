@@ -20,9 +20,12 @@
     "chatgpt": "^5.2.5",
     "framer-motion": "^10.16.4",
     "next": "14.0.0",
+    "node-fetch": "^3.3.2",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "react-spinners": "^0.13.8",
+    "unsplash-js": "^7.0.18",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
