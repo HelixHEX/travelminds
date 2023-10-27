@@ -71,18 +71,7 @@ export default function Home() {
                   variant="ghost"
                   _hover={{ color: "white", bg: "black" }}
                 >
-                  {isPending ? (
-                    <ClipLoader
-                      color={"#fff"}
-                      loading={true}
-                      cssOverride={override}
-                      size={150}
-                      aria-label="Loading Spinner"
-                      data-testid="loader"
-                    />
-                  ) : (
-                    <Icon as={FiSearch} />
-                  )}
+                  <Icon as={FiSearch} />
                 </Button>
               </InputRightElement>
             </InputGroup>
