@@ -51,7 +51,7 @@ export default function Home() {
           </VStack>
           <Text w={{base: '80%', md: 'auto'}} textAlign={'center'}>
             {
-              "Start by asking our AI travel agent where you'd like to go and your budegt, and we'll cover the rest"
+              "Start by asking our AI travel agent where you'd like to go and your budget, and we'll cover the rest"
             }
           </Text>
           <Flex flexDir={"column"} bg="white" rounded={10} w={{base: '80%', md: '100%'}}>
