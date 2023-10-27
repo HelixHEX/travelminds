@@ -1,7 +1,11 @@
 import { extendTheme } from "@chakra-ui/react";
+import { Josefin_Sans } from "next/font/google";
+
+const josefinSans = Josefin_Sans({ subsets: ["latin"] });
+
 export const theme = extendTheme({
   fonts: {
-    heading: "var(--font-josefin)",
-    body: "var(--font-josefin)",
+    heading: josefinSans.style.fontFamily,
+    body: josefinSans.style.fontFamily
   },
 });
