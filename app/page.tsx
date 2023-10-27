@@ -14,13 +14,15 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 /* CHANGE TO NEXT IMAGE WHEN BUG IS FIXED */
 // import { Image } from "@chakra-ui/next-js";
 
 export default function Home() {
+  const [fetched, setFetched] = useState<boolean>(false);
   return (
-    <Flex w="100%" minH="100vh" h={"auto"}>
+    <Flex flexDir={"column"} w="100%" minH="100vh" h={"auto"}>
       <Center w="100%" h="100vh">
         <VStack color="white" spacing={10}>
           <VStack>
@@ -31,21 +33,9 @@ export default function Home() {
           </VStack>
           <Text fontSize={20}>
             {
-              "Start by asking our AI travel agent where you'd like to go, and we'll cover the rest"
+              "Start by asking our AI travel agent where you'd like to go and your budegt, and we'll cover the rest"
             }
           </Text>
-          {/* <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              color="gray.300"
-              fontSize="1.2em">
-                $
-              </InputLeftElement>
-            <Input placeholder="Enter amount" />
-            <InputRightElement>
-              <FiSearch color="green.500" />
-            </InputRightElement>
-          </InputGroup> */}
           <InputGroup rounded="full" bg="white">
             <Input
               h={12}
@@ -53,21 +43,17 @@ export default function Home() {
               color="gray.700"
               placeholder="Start typing...✨"
               bg="white"
-              // w="100%"
-              // h='100%'
               rounded="full"
-              // border='none'
             />
             <InputRightElement
-            // _hover={{ curs }}
-            mt={1}
-            mr={2}
+              mt={1}
+              mr={2}
             >
               <Button
-                // bg="black"
+              onClick={() => setFetched(!fetched)}
                 rounded="full"
                 variant="ghost"
-                _hover={{ color: "white", bg: 'black' }}
+                _hover={{ color: "white", bg: "black" }}
               >
                 <Icon as={FiSearch} />
               </Button>
@@ -76,7 +62,7 @@ export default function Home() {
         </VStack>
         <Box
           zIndex={-1}
-          pos="fixed"
+          pos="absolute"
           w="100%"
           h="100vh"
           bg="gray.600"
@@ -84,13 +70,14 @@ export default function Home() {
         />
         <Image
           zIndex={-2}
-          pos="fixed"
+          pos="absolute"
           w="100%"
           h="100vh"
           src="/travelbanner.jpg"
           alt="Travel image background image"
         />
       </Center>
+      {fetched && <Flex w="100%" h="100vh"></Flex>}
     </Flex>
   );
 }
