@@ -40,17 +40,21 @@ export default function Home() {
       <Center w="100%" h="100vh">
         <VStack color="white" spacing={10}>
           <VStack>
-            <Heading fontSize={32}>Ask yourself</Heading>
-            <Heading textAlign={"center"} fontSize={100} w={800}>
+            <Heading fontSize={{ base: 20, md: 32 }}>Ask yourself</Heading>
+            <Heading
+              textAlign={"center"}
+              fontSize={{ base: 40, md: 100 }}
+              w={{ base: "auto", md: 800 }}
+            >
               {"What's the next adventure?"}
             </Heading>
           </VStack>
-          <Text>
+          <Text w={{base: '80%', md: 'auto'}} textAlign={'center'}>
             {
               "Start by asking our AI travel agent where you'd like to go and your budegt, and we'll cover the rest"
             }
           </Text>
-          <Flex flexDir={"column"} bg="white" rounded={10} w="100%">
+          <Flex flexDir={"column"} bg="white" rounded={10} w={{base: '80%', md: '100%'}}>
             <InputGroup>
               <Input
                 h={12}
