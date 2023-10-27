@@ -1,95 +1,96 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Icon,
+  Image,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { FiSearch } from "react-icons/fi";
+/* CHANGE TO NEXT IMAGE WHEN BUG IS FIXED */
+// import { Image } from "@chakra-ui/next-js";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <Flex w="100%" minH="100vh" h={"auto"}>
+      <Center w="100%" h="100vh">
+        <VStack color="white" spacing={10}>
+          <VStack>
+            <Heading fontSize={32}>Ask yourself</Heading>
+            <Heading textAlign={"center"} fontSize={100} w={800}>
+              {"What's the next adventure?"}
+            </Heading>
+          </VStack>
+          <Text fontSize={20}>
+            {
+              "Start by asking our AI travel agent where you'd like to go, and we'll cover the rest"
+            }
+          </Text>
+          {/* <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              color="gray.300"
+              fontSize="1.2em">
+                $
+              </InputLeftElement>
+            <Input placeholder="Enter amount" />
+            <InputRightElement>
+              <FiSearch color="green.500" />
+            </InputRightElement>
+          </InputGroup> */}
+          <InputGroup rounded="full" bg="white">
+            <Input
+              h={12}
+              pr={8}
+              color="gray.700"
+              placeholder="Start typing...✨"
+              bg="white"
+              // w="100%"
+              // h='100%'
+              rounded="full"
+              // border='none'
             />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+            <InputRightElement
+            // _hover={{ curs }}
+            mt={1}
+            mr={2}
+            >
+              <Button
+                // bg="black"
+                rounded="full"
+                variant="ghost"
+                _hover={{ color: "white", bg: 'black' }}
+              >
+                <Icon as={FiSearch} />
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </VStack>
+        <Box
+          zIndex={-1}
+          pos="fixed"
+          w="100%"
+          h="100vh"
+          bg="gray.600"
+          opacity={"0.3"}
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        <Image
+          zIndex={-2}
+          pos="fixed"
+          w="100%"
+          h="100vh"
+          src="/travelbanner.jpg"
+          alt="Travel image background image"
+        />
+      </Center>
+    </Flex>
+  );
 }
