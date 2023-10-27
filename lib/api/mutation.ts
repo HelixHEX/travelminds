@@ -16,7 +16,7 @@ const generateTravelDetails = async ({
   return res.data;
 };
 
-export const useGenerateTravelDetails = () => {
+export const useGenerateTravelDetails = ({ref}: {ref: RefType}) => {
   const toast = useToast();
   return useMutation({
     mutationFn: generateTravelDetails,
@@ -33,6 +33,7 @@ export const useGenerateTravelDetails = () => {
         title: "Success",
         description: "Travel details generated",
       });
+      ref.current?.scrollIntoView({behavior: "smooth"})
     },
   });
   // console.log(data)

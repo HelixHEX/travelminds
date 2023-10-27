@@ -17,7 +17,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useState, CSSProperties } from "react";
+import { useState, CSSProperties, useRef } from "react";
 import { FiSearch } from "react-icons/fi";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -33,8 +33,9 @@ const override: CSSProperties = {
 export default function Home() {
   const [destination, setDestination] = useState<string>("");
   const [budget, setBudget] = useState<any>();
-  const { mutate, data, isPending } = useGenerateTravelDetails();
+  const ref = useRef<null | HTMLElement>(null)
 
+  const { mutate, data, isPending } = useGenerateTravelDetails({ref});
   return (
     <>
       <Center w="100%" h="100vh">
@@ -132,7 +133,7 @@ export default function Home() {
         />
       </Center>
       {!isPending && data && (
-        <Box p={10} id="results" w="100%" h="100vh">
+        <Box ref={ref} p={10} id="results" w="100%" h="100vh">
           <Heading fontSize={40} textAlign={"center"}>
             Trip Summary
           </Heading>
