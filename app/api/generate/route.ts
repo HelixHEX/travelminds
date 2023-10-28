@@ -10,6 +10,7 @@ const unsplash = createApi({
   fetch: nodeFetch.default as unknown as typeof fetch,
 });
 
+
 export const POST = async (request: NextRequest) => {
   const { destination, budget } = await request.json();
   const gptAPI = new ChatGPTAPI({

@@ -25,6 +25,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "react-reveal": "^1.2.2",
     "react-spinners": "^0.13.8",
     "unsplash-js": "^7.0.18",
     "yarn": "^1.22.19"

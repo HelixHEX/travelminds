@@ -30,12 +30,13 @@ export const useGenerateTravelDetails = ({ref}: {ref: RefType}) => {
       });
     },
     onSuccess: () => {
+      // ref.current?.scrollIntoView({behavior: 'smooth'})
       toast({
         status: "success",
         title: "Success",
         description: "Travel details generated",
       });
-      ref.current?.scrollIntoView({behavior: "smooth"})
+     
     },
   });
   // console.log(data)
