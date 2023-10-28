@@ -17,10 +17,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useState, CSSProperties, useRef } from "react";
+import { useState, CSSProperties, useRef, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import ClipLoader from "react-spinners/ClipLoader";
-
+const Fade = require("react-reveal/Fade");
+const Zoom = require("react-reveal/Zoom");
 /* CHANGE TO NEXT IMAGE WHEN BUG IS FIXED */
 // import { Image } from "@chakra-ui/next-js";
 
@@ -33,9 +34,17 @@ const override: CSSProperties = {
 export default function Home() {
   const [destination, setDestination] = useState<string>("");
   const [budget, setBudget] = useState<any>();
-  const ref = useRef<null | HTMLDivElement>(null)
+  const ref = useRef<null | HTMLDivElement>(null);
 
-  const { mutate, data, isPending } = useGenerateTravelDetails({ref});
+  const { mutate, data, isPending } = useGenerateTravelDetails({ ref });
+
+  useEffect(() => {
+    if (!isPending) {
+      if (data) {
+        ref.current?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [data, isPending]);
   return (
     <>
       <Center w="100%" h="100vh">
@@ -134,41 +143,55 @@ export default function Home() {
       </Center>
       {!isPending && data && (
         <Box ref={ref} p={10} id="results" w="100%" h="100vh">
-          <Heading fontSize={40} textAlign={"center"}>
-            Trip Summary
-          </Heading>
-          <Image
-            mt={10}
-            rounded={10}
-            w={"100%"}
-            h={400}
-            alt="Destination image"
-            src={data.formattedResponse.destinationImgURL}
-            // src={data.formattedResponse.destinationImgURL}
-          />
-          <Heading mt={10} fontSize={32}>
-            {destination}
-          </Heading>
-          <Heading mt={4} fontSize={18}>
-            Budget: <span>${budget}</span>
-          </Heading>
+          <Fade>
+            <Heading fontSize={40} textAlign={"center"}>
+              Trip Summary
+            </Heading>
+          </Fade>
+          <Zoom>
+            <Image
+              mt={10}
+              rounded={10}
+              w={"100%"}
+              h={400}
+              alt="Destination image"
+              src={data.formattedResponse.destinationImgURL}
+              // src={data.formattedResponse.destinationImgURL}
+            />
+          </Zoom>
+          <Fade>
+            <Heading mt={10} fontSize={32}>
+              {destination}
+            </Heading>
+          </Fade>
+          <Fade>
+            <Heading mt={4} fontSize={18}>
+              Budget: <span>${budget}</span>
+            </Heading>
+          </Fade>
           {/* <Text mt={4}>{data.rawResponse}</Text> */}
-          {data.formattedResponse.itinerary.map((list: any, index: number) => (
-            <div key={index}>
-              <Text mt={4}>- {list}</Text>
-              <br></br>
-            </div>
-          ))}
-          <Button
-            mt={4}
-            mb={10}
-            variant="ghost"
-            _hover={{ bg: "black", color: "white" }}
-            size="md"
-            color="gray.800"
-          >
-            Book Now
-          </Button>
+          <Fade>
+            {data.formattedResponse.itinerary.map(
+              (list: any, index: number) => (
+                <div key={index}>
+                  <Text mt={4}>- {list}</Text>
+                  <br></br>
+                </div>
+              )
+            )}
+          </Fade>
+          <Fade>
+            <Button
+              mt={4}
+              mb={10}
+              variant="ghost"
+              _hover={{ bg: "black", color: "white" }}
+              size="md"
+              color="gray.800"
+            >
+              Book Now
+            </Button>
+          </Fade>
         </Box>
       )}
       {/* {fetched && <Flex w="100%" h="100vh"></Flex>} */}
