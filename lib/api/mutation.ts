@@ -2,8 +2,13 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { getBaseURL } from "./utils";
 import { useToast } from "@chakra-ui/react";
+import {
+  GenerateTravelDetailsProps,
+  GeneratedDetailsQueryProps,
+  GeneratedDetailsResponse,
+} from "@/types";
 
-type RefType = React.MutableRefObject<null | HTMLDivElement>
+export type RefType = React.MutableRefObject<null | HTMLDivElement>;
 
 const generateTravelDetails = async ({
   destination,
@@ -16,9 +21,9 @@ const generateTravelDetails = async ({
     budget,
   });
   return res.data;
-};
+}; 
 
-export const useGenerateTravelDetails = ({ref}: {ref: RefType}) => {
+export const useGenerateTravelDetails = ({ ref }: { ref: RefType }) => {
   const toast = useToast();
   return useMutation({
     mutationFn: generateTravelDetails,
@@ -36,8 +41,6 @@ export const useGenerateTravelDetails = ({ref}: {ref: RefType}) => {
         title: "Success",
         description: "Travel details generated",
       });
-     
     },
   });
-  // console.log(data)
 };

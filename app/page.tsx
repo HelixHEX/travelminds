@@ -6,6 +6,7 @@ import {
   Center,
   Divider,
   Flex,
+  HStack,
   Heading,
   Icon,
   Image,
@@ -47,19 +48,19 @@ export default function Home() {
   }, [data, isPending]);
   return (
     <>
-      <Center w="100%" h="100vh">
+      <Center w="100%" h="100vh" p={{ base: 4 }}>
         <VStack color="white" spacing={10}>
           <VStack>
             <Heading fontSize={{ base: 20, md: 32 }}>Ask yourself</Heading>
             <Heading
               textAlign={"center"}
               fontSize={{ base: 40, md: 100 }}
-              w={{ base: "auto", md: 800 }}
+              w={{ base: "100%", md: 800 }}
             >
               {"What's the next adventure?"}
             </Heading>
           </VStack>
-          <Text w={{ base: "80%", md: "auto" }} textAlign={"center"}>
+          <Text w={{ base: "100%", md: "auto" }} textAlign={"center"}>
             {
               "Start by asking our AI travel agent where you'd like to go and your budget, and we'll cover the rest"
             }
@@ -68,7 +69,7 @@ export default function Home() {
             flexDir={"column"}
             bg="white"
             rounded={10}
-            w={{ base: "80%", md: "100%" }}
+            w={{ base: "100%", md: "100%" }}
           >
             <InputGroup>
               <Input
@@ -142,55 +143,112 @@ export default function Home() {
         />
       </Center>
       {!isPending && data && (
-        <Box ref={ref} p={10} id="results" w="100%" h="100vh">
-          <Fade>
+        <Box
+          pb={100}
+          ref={ref}
+          p={{ base: 4, md: 10 }}
+          id="results"
+          w="100%"
+          h="100vh"
+        >
+          {/* <Fade>
             <Heading fontSize={40} textAlign={"center"}>
               Trip Summary
             </Heading>
-          </Fade>
-          <Zoom>
-            <Image
-              mt={10}
-              rounded={10}
-              w={"100%"}
+          </Fade> */}
+
+          <Flex flexDir={{ base: "column", md: "row" }}>
+            <Zoom>
+              <Image
+                rounded={10}
+                w={{ base: "100%", md: 400 }}
+                h={400}
+                alt="Destination image"
+                src={data.formattedResponse.destinationImgURL}
+                // src={data.formattedResponse.destinationImgURL}
+              />
+            </Zoom>
+            <Flex
               h={400}
-              alt="Destination image"
-              src={data.formattedResponse.destinationImgURL}
-              // src={data.formattedResponse.destinationImgURL}
-            />
-          </Zoom>
+              mt={{ base: 4, md: 0 }}
+              flexDir={"column"}
+              ml={{ base: 0, md: 4 }}
+              justifyContent={"space-between"}
+            >
+              <Box>
+                <Heading fontSize={40}>{destination}</Heading>
+                {/* <Fade> */}
+                <Heading mt={4} w={{ base: "100%", md: 500 }} size="sm">
+                  {data.formattedResponse.itinerary[0]}
+                </Heading>
+                {/* </Heading> */}
+                <Fade>
+                  <Heading size="sm" mt={4}>
+                    Budget: <span style={{ fontWeight: "400" }}>${budget}</span>
+                  </Heading>
+                </Fade>
+                <Heading mt={4} size="sm">
+                  Select dates
+                </Heading>
+                <HStack>
+                  <Box>
+                    <Heading mt={2} fontSize={12}>
+                      Depart
+                    </Heading>
+                    <Input
+                      w={40}
+                      mt={2}
+                      placeholder="Select Date and Time"
+                      size="md"
+                      type="date"
+                    />
+                  </Box>
+                  <Box>
+                    <Heading mt={2} fontSize={12}>
+                      Arrive
+                    </Heading>
+                    <Input
+                      w={40}
+                      mt={2}
+                      placeholder="Select Date and Time"
+                      size="md"
+                      type="date"
+                    />
+                  </Box>
+                </HStack>
+              </Box>
+              {/* <Fade> */}
+              <Button
+                // alignSelf={"end"}
+                // mt={4}
+                // mb={10}
+                variant="ghost"
+                _hover={{ bg: "black", color: "white" }}
+                size="md"
+                w="100%"
+                color="gray.800"
+              >
+                Book Now
+              </Button>
+              {/* </Fade> */}
+            </Flex>
+          </Flex>
           <Fade>
             <Heading mt={10} fontSize={32}>
-              {destination}
+              Itinerary
             </Heading>
           </Fade>
-          <Fade>
-            <Heading mt={4} fontSize={18}>
-              Budget: <span>${budget}</span>
-            </Heading>
-          </Fade>
+
           {/* <Text mt={4}>{data.rawResponse}</Text> */}
           <Fade>
-            {data.formattedResponse.itinerary.map(
-              (list: any, index: number) => (
+            {data.formattedResponse.itinerary
+              .slice(1)
+              .map((list: any, index: number) => (
                 <div key={index}>
                   <Text mt={4}>- {list}</Text>
                   <br></br>
                 </div>
-              )
-            )}
-          </Fade>
-          <Fade>
-            <Button
-              mt={4}
-              mb={10}
-              variant="ghost"
-              _hover={{ bg: "black", color: "white" }}
-              size="md"
-              color="gray.800"
-            >
-              Book Now
-            </Button>
+              ))}
           </Fade>
         </Box>
       )}
