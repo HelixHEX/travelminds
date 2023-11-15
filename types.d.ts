@@ -1,7 +1,4 @@
-interface GeneratedDetailsResponse {
-  rawResponse: string;
-  formattedResponse: FormatedResponse
-}
+import { type RefType } from "./lib/api/mutation";
 
 interface FormatedResponse {
   details: string;
@@ -11,7 +8,26 @@ interface FormatedResponse {
   itinerary: string[]
 }
 
+// QUERY RESPONSE TYPES
+interface GeneratedDetailsResponse {
+  rawResponse: string;
+  formattedResponse: FormatedResponse
+}
+
+
+// QUERY FUNCTION PROPS
 interface GenerateTravelDetailsProps {
   destination: string;
-  budget
+  budget: string;
 }
+
+
+// QUERY PROPS 
+
+interface GeneratedDetailsQueryProps {
+  refType:RefType,
+  destination: string;
+  budget: string;
+  enabled: boolean;
+}
+
